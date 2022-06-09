@@ -1,1 +1,0 @@
-# _Computer_Graphics
