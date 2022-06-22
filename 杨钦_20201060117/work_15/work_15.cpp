@@ -3,7 +3,7 @@
 #include <math.h>
 #include <iostream>
 #include <GL/glut.h>
-int s1, s2, s3;    //ÊÓ½ÇÎ»ÖÃ£¬È«¾Ö±äÁ¿
+int s1, s2, s3;    //è§†è§’ä½ç½®ï¼Œå…¨å±€å˜é‡
 using namespace std;
 void Init()
 {
@@ -21,7 +21,7 @@ void Reshape(int w, int h)
 }
 void XYZ(void)
 {
-    //×ø±êÖá
+    //åæ ‡è½´
     glLineWidth(1); glColor3f(0.0, 0.0, 0.0);
 
     glBegin(GL_LINES);
@@ -34,15 +34,15 @@ void XYZ(void)
 }
 void myDisplay(void)
 {
- //¶¥µã±í
+ //é¡¶ç‚¹è¡¨
     int x[10] = { 50, 50, 25, 0, 0, 50, 50, 25, 0, 0 };
     int y[10] = { 0, 40, 60, 40, 0, 0, 40, 60,40, 0 };
     int z[10] = { 140,140,140,140,140, 0, 0, 0, 0,0 };
-//Ãæµã±í
-    int f[7] = { 0,1,2,3,4,5,6 }; //ÃæµÄºÅÂë
-    int p[7] = { 6,5,6,5,5,5,5 }; //ÃæµÄ¶¥µãÊı
+//é¢ç‚¹è¡¨
+    int f[7] = { 0,1,2,3,4,5,6 }; //é¢çš„å·ç 
+    int p[7] = { 6,5,6,5,5,5,5 }; //é¢çš„é¡¶ç‚¹æ•°
     int fp[7][6] = { {0,1,2,3,4,0},{0,5,6,1,0,0},{5,9,8,7,6,5},{9,4,3,8,9,0},
-    {1,6,7,2,1,0},{3,2,7,8,3,0},{0,4,9,5,0,0} }; //ÃæµÄ¶¥µãĞò
+    {1,6,7,2,1,0},{3,2,7,8,3,0},{0,4,9,5,0,0} }; //é¢çš„é¡¶ç‚¹åº
     int i, j, k, SN;
     int p1, p2, p3, u1, u2, u3, v1, v2, v3;
     glClear(GL_COLOR_BUFFER_BIT);
@@ -50,19 +50,19 @@ void myDisplay(void)
     gluLookAt(s1, s2, s3, 0, 0, 0, 0, 1, 0);
     XYZ();
     glLineWidth(3); glColor3f(1.0, 0.0, 0.0);
- //Ëã·¨
+ //ç®—æ³•
     for (i = 0; i < 7; i++)
     {
-        p1 = fp[i][0]; p2 = fp[i][1]; p3 = fp[i][2]; //È¡Ç°Èı¸ö¶¥µã
-        //¼ÆËã·¨Ïß
+        p1 = fp[i][0]; p2 = fp[i][1]; p3 = fp[i][2]; //å–å‰ä¸‰ä¸ªé¡¶ç‚¹
+        //è®¡ç®—æ³•çº¿
         u1 = x[p2] - x[p1]; u2 = y[p2] - y[p1]; u3 = z[p2] - z[p1];
         v1 = x[p3] - x[p2]; v2 = y[p3] - y[p2]; v3 = z[p3] - z[p2];
-        //¼ÆËã·¨ÏßÓëÊÓ½ÇµÄµã³Ë
+        //è®¡ç®—æ³•çº¿ä¸è§†è§’çš„ç‚¹ä¹˜
         SN = s1*(u2 * v3 - u3 * v2) + s2*(u3 * v1 - u1 * v3) + s3*(u1 * v2 - u2 * v1);
-        if (SN < 0) f[i] = -1;       //·¨ÏßÓëÊÓ½Çµã³ËĞ¡ÓÚÁã
+        if (SN < 0) f[i] = -1;       //æ³•çº¿ä¸è§†è§’ç‚¹ä¹˜å°äºé›¶
     }
     for (i = 0; i < 7; i++)
-    {//ÏûÒşµÄ²¿·Ö
+    {//æ¶ˆéšçš„éƒ¨åˆ†
         if (f[i] == -1)
         {
             glEnable(GL_LINE_STIPPLE);
@@ -77,7 +77,7 @@ void myDisplay(void)
             glEnd(); glFlush();
             glDisable(GL_LINE_STIPPLE);
         }
-        //¿É¼ûµÄ²¿·Ö
+        //å¯è§çš„éƒ¨åˆ†
         else
         {
             glBegin(GL_LINE_STRIP);
@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
-    cout << "Èç£º1 1 1" << endl;
+    cout << "å¦‚ï¼š1 1 1" << endl;
     cin >> s1 >> s2 >> s3;
     glutInitWindowPosition(100, 100);
     glutInitWindowSize(840, 680);
